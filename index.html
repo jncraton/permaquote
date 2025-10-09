@@ -19,8 +19,23 @@
     <p id=text contenteditable>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
     <p id=len></p>
     <script>
+    function rot13(str) {
+      return str.replace(/[A-Za-z]/g, c =>
+        String.fromCharCode(
+          (c <= 'Z' ? 65 : 97) + ((c.charCodeAt(0) - (c <= 'Z' ? 65 : 97) + 13) % 26)
+        )
+      )
+    }
+
+    function encode(str) {
+      str = str.replaceAll(' ', '_')
+      str = rot13(str)
+      str = encodeURIComponent(str)
+      return str
+    }
+    
     function update() {
-      const frag = encodeURIComponent(text.textContent)
+      let frag = encode(text.textContent)
       len.textContent = frag.length
       window.location.hash = frag
     }
