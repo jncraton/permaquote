@@ -10,8 +10,11 @@
 
   <body>
     <textarea id=text></textarea>
+    <p id=len></p>
     <script>
     text.addEventListener('input', e => {
+      const frag = encodeURIComponent(e.target.value)
+      len.textContent = frag.length
       window.location.hash = encodeURIComponent(e.target.value)
     })
     </script>
