@@ -30,23 +30,36 @@
     <label>Source URL<input id=src value="https://en.wikipedia.org/wiki/Lorem_ipsum"></label>
     <p id=len></p>
     <script>
-    function rot13(str) {
-      return str.replace(/[A-Za-z]/g, c =>
-        String.fromCharCode(
-          (c <= 'Z' ? 65 : 97) + ((c.charCodeAt(0) - (c <= 'Z' ? 65 : 97) + 13) % 26)
-        )
-      )
+    async function encode(text, algo) {
+      let stream = new Blob([text]).stream()
+
+      if (algo) {
+        stream = stream.pipeThrough(new CompressionStream(algo))
+      }
+      const res = await new Response(stream)
+
+      const blob = await res.blob()
+      const buffer = await blob.arrayBuffer()
+      
+      return btoa(String.fromCharCode(...new Uint8Array(buffer)))
     }
 
-    function encode(str) {
-      str = str.replaceAll(' ', '_')
-      str = rot13(str)
-      str = encodeURIComponent(str)
-      return str
+    async function decode(text, algo) {
+      const binary = Uint8Array.from(atob(text), c => c.charCodeAt(0))
+
+      let stream = new Blob([binary]).stream()
+
+      if (algo) {
+        stream = stream.pipeThrough(new DecompressionStream(algo))
+      }
+
+      const res = await new Response(stream)
+      const blob = await res.blob()
+      return await blob.text()
     }
-    
-    function update() {
-      let frag = encode(text.textContent)
+
+    async function update() {
+      let frag = await encode(text.textContent, 'deflate-raw')
       len.textContent = frag.length
       window.location.hash = frag
     }
