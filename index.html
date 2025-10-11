@@ -26,7 +26,8 @@
   </head>
 
   <body>
-    <p id=text contenteditable spellcheck=false>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+    <label>Excerpt
+    <textarea id=text spellcheck=false>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</textarea></label>
     <label>Source URL<input id=src value="https://en.wikipedia.org/wiki/Lorem_ipsum"></label>
     <p id=len></p>
     <script>
@@ -59,7 +60,7 @@
     }
 
     async function update() {
-      let frag = await encode(text.textContent, 'deflate-raw')
+      let frag = await encode(text.value, 'deflate-raw')
       len.textContent = frag.length
       window.location.hash = frag
     }
@@ -67,7 +68,7 @@
     text.addEventListener('input', update)
 
     async function load() {
-      text.textContent = await decode(window.location.hash.slice(1), 'deflate-raw')
+      text.value = await decode(window.location.hash.slice(1), 'deflate-raw')
       update()
     }
     load()
