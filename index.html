@@ -65,7 +65,12 @@
     }
 
     text.addEventListener('input', update)
-    update()
+
+    async function load() {
+      text.textContent = await decode(window.location.hash.slice(1), 'deflate-raw')
+      update()
+    }
+    load()
     </script>
   </body>
 </html>
