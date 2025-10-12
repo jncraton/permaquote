@@ -6,5 +6,8 @@ lint:
 format:
 	npx prettier@3.6.2 --write .
 
+dev-deps:
+	pip3 install pytest-playwright==0.7.1 && playwright install
+
 clean:
 	rm -rf .pytest_cache

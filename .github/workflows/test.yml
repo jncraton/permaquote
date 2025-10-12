@@ -11,4 +11,4 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v5
-      - run: pip3 install pytest-playwright==0.7.1 && playwright install && pytest
+      - run: make dev-deps && pytest
