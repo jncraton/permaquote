@@ -103,6 +103,7 @@
       out_title.textContent = title.value
       out_text.innerHTML = text.value.replaceAll("\n\n","<p>")
       original.href = src.value
+      original.textContent = src.value
       internet_archive.href = `https://web.archive.org/web/*/${src.value}`
     }
 
