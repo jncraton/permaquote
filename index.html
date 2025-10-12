@@ -31,6 +31,9 @@
       font-size: 150%;
       filter: blur(0.2em);
     }
+    body > form:not(:last-child) {
+      display: none;
+    }
     </style>
   </head>
 
@@ -114,10 +117,15 @@
     })
 
     async function load() {
-      let [fsrc, ftitle, excerpt] = location.hash.slice(1).split(";")
-      src.value = fsrc
-      title.value = ftitle
-      text.value = await decode(excerpt, 'deflate-raw')
+      let hash = location.hash.slice(1)
+      if (hash.length <= 1) {
+        document.querySelector("form").style.display = "block"
+      } else {
+        let [fsrc, ftitle, excerpt] = hash.split(";")
+        src.value = fsrc
+        title.value = ftitle
+        text.value = await decode(excerpt, 'deflate-raw')
+      }
       update()
     }
     load()
