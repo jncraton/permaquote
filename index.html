@@ -44,6 +44,7 @@
       <textarea id=text spellcheck=false placeholder="Quoted text..."></textarea></label>
       <label>Source URL<input id=src placeholder="https://example.com"></label>
       <output id=len></output>
+      <label>Share URL<input id=share readonly></input></label>
     </form>
 
     <main>
@@ -100,7 +101,7 @@
     async function update() {
       let excerpt = await encode(text.value, 'deflate-raw')
       len.textContent = excerpt.length
-      window.location.hash = encodeURL(src.value) + ";" + encodeTitle(title.value) + ";" + excerpt
+      share.value = window.location.href.split("#")[0] + "#" + encodeURL(src.value) + ";" + encodeTitle(title.value) + ";" + excerpt
       render()
     }
 
