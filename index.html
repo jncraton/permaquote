@@ -82,7 +82,9 @@
     text.addEventListener('input', update)
 
     async function load() {
-      let [url, title, excerpt] = location.hash.slice(1).split(";")
+      let [fsrc, ftitle, excerpt] = location.hash.slice(1).split(";")
+      src.value = fsrc
+      title.value = ftitle
       text.value = await decode(excerpt, 'deflate-raw')
       update()
     }
