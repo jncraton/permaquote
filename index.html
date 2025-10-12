@@ -105,9 +105,9 @@
     }
 
     function render() {
-      out_title.textContent = title.value
-      out_text.innerHTML = text.value.replaceAll("\n\n","<p>")
-      original.href = src.value
+      out_title.textContent = title.value || title.placeholder
+      out_text.innerHTML = text.value.replaceAll("\n\n","<p>") || text.placeholder
+      original.href = src.value || src.placeholder
       original.textContent = src.value
       internet_archive.href = `https://web.archive.org/web/*/${src.value}`
     }
