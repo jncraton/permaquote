@@ -1,4 +1,3 @@
-citetext
-========
+# citetext
 
 Permanent URLs for cited quotes
