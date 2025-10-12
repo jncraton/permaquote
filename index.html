@@ -98,6 +98,10 @@
       return title
     }
 
+    function decodeTitle(title) {
+      return title.replaceAll("+", " ")
+    }
+
     async function update() {
       let excerpt = await encode(text.value, 'deflate-raw')
       len.textContent = excerpt.length
@@ -124,7 +128,7 @@
       } else {
         let [fsrc, ftitle, excerpt] = hash.split(";")
         src.value = fsrc
-        title.value = ftitle.replaceAll("+", " ")
+        title.value = decodeTitle(ftitle)
         text.value = await decode(excerpt, 'deflate-raw')
       }
       update()
