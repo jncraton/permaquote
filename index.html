@@ -145,6 +145,7 @@
       }
 
       function decodeTitle(title) {
+        title = decodeURIComponent(title)
         return title.replaceAll('+', ' ')
       }
 
