@@ -58,7 +58,7 @@
 
       p > a {
         display: inline-block;
-        max-width: 20em;
+        max-width: 16em;
         overflow: hidden;
         text-overflow: ellipsis;
         white-space: nowrap;
@@ -181,7 +181,8 @@
         out_text.innerHTML =
           text.value.replaceAll('\n\n', '<p>') || text.placeholder
         original.href = src.value || src.placeholder
-        original.textContent = src.value
+        original.textContent = original.href.replace(/^https?:\/\/(www\.|)/, '')
+
         internet_archive.href = `https://web.archive.org/web/*/${src.value}`
       }
 
