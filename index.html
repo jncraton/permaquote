@@ -137,6 +137,11 @@
         return url
       }
 
+      function decodeURL(url) {
+        url = decodeURIComponent(url)
+        return url
+      }
+
       function encodeTitle(title) {
         title = encodeURIComponent(title)
         title = title.replace(/%20/g, '+')
@@ -181,7 +186,7 @@
           document.querySelector('form').style.display = 'block'
         } else {
           let [fsrc, ftitle, excerpt] = hash.split(';')
-          src.value = fsrc
+          src.value = decodeURL(fsrc)
           title.value = decodeTitle(ftitle)
           text.value = await decode(excerpt, 'deflate-raw')
         }
