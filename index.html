@@ -79,7 +79,9 @@
       window.location.hash = encodeURL(src.value) + ";" + encodeTitle(title.value) + ";" + excerpt
     }
 
-    text.addEventListener('input', update)
+    document.querySelectorAll("input, textarea").forEach(el => {
+      el.addEventListener('input', update)
+    })
 
     async function load() {
       let [fsrc, ftitle, excerpt] = location.hash.slice(1).split(";")
