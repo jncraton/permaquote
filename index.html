@@ -165,6 +165,7 @@
 
       function render() {
         out_title.textContent = title.value || title.placeholder
+        document.title = title.value || title.placeholder
         out_text.innerHTML =
           text.value.replaceAll('\n\n', '<p>') || text.placeholder
         original.href = src.value || src.placeholder
