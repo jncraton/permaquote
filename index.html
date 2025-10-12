@@ -124,7 +124,7 @@
       } else {
         let [fsrc, ftitle, excerpt] = hash.split(";")
         src.value = fsrc
-        title.value = ftitle
+        title.value = ftitle.replaceAll("+", " ")
         text.value = await decode(excerpt, 'deflate-raw')
       }
       update()
