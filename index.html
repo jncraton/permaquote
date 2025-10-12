@@ -10,9 +10,13 @@
         font-size: 20px;
       }
 
-      html, body {
+      html, body, header, nav, h1 {
         margin: 0;
         padding: 0;
+      }
+
+      h1 {
+        font-size: 0.7rem;
       }
 
       body > :not(:last-child),
@@ -48,6 +52,9 @@
   </head>
 
   <body>
+    <header>
+      <nav><h1><a href="https://jncraton.github.io/citetext/">citetext</a></h1></nav>
+    </header>
     <form>
       <label>Title<input id="title" placeholder="Example Title" /></label>
       <label
