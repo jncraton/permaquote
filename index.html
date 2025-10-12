@@ -82,15 +82,9 @@
       <label>Title<input id="title" placeholder="Example Title" /></label>
       <label
         >Excerpt
-        <textarea
-          id="text"
-          spellcheck="false"
-          placeholder="Quoted text…"
-        ></textarea>
+        <textarea id="text" spellcheck="false" placeholder="Quoted text…"></textarea>
       </label>
-      <label
-        >Source URL<input id="src" placeholder="https://example.com"
-      /></label>
+      <label>Source URL<input id="src" placeholder="https://example.com" /></label>
       <output id="len"></output>
       <label>Share URL<input id="share" readonly /></label>
     </form>
@@ -101,10 +95,8 @@
       <blockquote id="out_text"></blockquote>
       <p>…</p>
       <p>
-        The above quote is preserved permantently by a user indicating that it
-        originally came from from
-        <a id="original"></a> on the web. If it is not currently accessible
-        there, it may be
+        The above quote is preserved permantently by a user indicating that it originally came from from
+        <a id="original"></a> on the web. If it is not currently accessible there, it may be
         <a id="internet_archive">available via the Internet Archive</a>.
       </p>
     </main>
@@ -178,18 +170,14 @@
       function render() {
         out_title.textContent = title.value || title.placeholder
         document.title = title.value || title.placeholder
-        out_text.innerHTML =
-          text.value.replaceAll('\n\n', '<p>') || text.placeholder
+        out_text.innerHTML = text.value.replaceAll('\n\n', '<p>') || text.placeholder
 
         let src_url = src.value || src.placeholder
 
         if (src_url.includes('#')) {
           original.href = src_url
         } else {
-          original.href =
-            src_url +
-            '#:~:text=' +
-            text.value.slice(0, 50).replace(/\W*\w+$/, '')
+          original.href = src_url + '#:~:text=' + text.value.slice(0, 50).replace(/\W*\w+$/, '')
         }
 
         original.textContent = src_url.replace(/^https?:\/\/(www\.|)/, '')
