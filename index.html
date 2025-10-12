@@ -60,10 +60,17 @@
       return await blob.text()
     }
 
+    function encodeURL(url) {
+      url = encodeURIComponent(url)
+      url = url.replace(/%3A/g, ":")
+      url = url.replace(/%2F/g, "/")
+      return url
+    }
+
     async function update() {
       let excerpt = await encode(text.value, 'deflate-raw')
       len.textContent = excerpt.length
-      window.location.hash = excerpt
+      window.location.hash = encodeURL(src.value) + ";" + excerpt
     }
 
     text.addEventListener('input', update)
