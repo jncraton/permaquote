@@ -51,10 +51,7 @@
         margin-inline: 0;
         padding-left: 2em;
       }
-      s {
-        font-size: 150%;
-        filter: blur(0.2em);
-      }
+
       body > form:not(:last-child) {
         display: none;
       }
@@ -90,21 +87,14 @@
 
     <main>
       <h2 id="out_title"></h2>
-      <a id="original">Source</a>
-      <a id="internet_archive">Internet Archive</a>
+
       <p>
-        <s
-          >Lorem ipsum dolor sit amet, elit, sed do tempor ut labore et dolore
-          magna aliqua. Ut enim ad minim veniam, quis nisi ut aliquip ex ea.</s
-        >
+        The following is an excerpt from <a id="original">Source</a> (<a
+          id="internet_archive"
+          >archive</a
+        >):
       </p>
       <blockquote id="out_text"></blockquote>
-      <p>
-        <s
-          >Duis aute irure dolor in in velit esse cillum dolore eu fugiat nulla.
-          Sint non, sunt in culpa qui mollit anim id est laborum.</s
-        >
-      </p>
     </main>
 
     <script>
