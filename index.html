@@ -180,8 +180,19 @@
         document.title = title.value || title.placeholder
         out_text.innerHTML =
           text.value.replaceAll('\n\n', '<p>') || text.placeholder
-        original.href = src.value || src.placeholder
-        original.textContent = original.href.replace(/^https?:\/\/(www\.|)/, '')
+
+        let src_url = src.value || src.placeholder
+
+        if (src_url.includes('#')) {
+          original.href = src_url
+        } else {
+          original.href =
+            src_url +
+            '#:~:text=' +
+            text.value.slice(0, 50).replace(/\W*\w+$/, '')
+        }
+
+        original.textContent = src_url.replace(/^https?:\/\/(www\.|)/, '')
 
         internet_archive.href = `https://web.archive.org/web/*/${src.value}`
       }
