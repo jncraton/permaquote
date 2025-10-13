@@ -8,8 +8,11 @@ file_url = Path("index.html").resolve().as_uri()
 
 @pytest.fixture
 def example_page(page: Page):
-    page.goto(f"{file_url}#https://example.com;Example;1970-01-01;c1Qozy/KzsxLV0itSMwtyEkFAA==")
+    page.goto(f"{file_url}#https://example.com;The+Title;1970-01-01;c1Qozy/KzsxLV0itSMwtyEkFAA==")
     return page
+
+def test_title(example_page):
+    expect(example_page.get_by_text("The Title")).to_be_visible()
 
 def test_quote(example_page):
     expect(example_page.get_by_text("A working example")).to_be_visible()
