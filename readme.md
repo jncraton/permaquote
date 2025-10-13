@@ -18,3 +18,13 @@ Permaquote attempts to address this in a few ways:
 2. The source and content of the page is embedded in the link itself. Permaquote does not have access to any data shared with this service. The source, date, and quote contents can be derived directly from the link microformat without sending an HTTP request.
 3. Direct links to the source page are provided if a viewer would like to attempt to click through to the full context.
 4. Links to archival services are also provided if the original page is no longer available.
+
+## Microformat
+
+The URLs used by permaquote leverage a microformat within the URL fragment to represent all required data.
+
+```
+baseurl#https://example.com/page1;Example+Page;2000-01-02;{quote content compressed using 'deflate-raw'}
+```
+
+This format allows the original source to be seen in plain text along with its access date so that it can be properly reconstructed from archives if needed. It also directly encodes the original excerpt for easy, immediate viewing.
