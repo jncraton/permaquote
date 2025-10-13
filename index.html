@@ -98,7 +98,8 @@
 
     <main>
       <h2 id="out_title"></h2>
-      <time id="out_date"></time>
+      <p><a id="domain"></a></p>
+      <p><time id="out_date"></time></p>
       <p>…</p>
       <blockquote id="out_text"></blockquote>
       <p>…</p>
@@ -192,6 +193,9 @@
         }
 
         original.textContent = src_url.replace(/^https?:\/\/(www\.|)/, '')
+
+        domain.href = src_url
+        domain.textContent = original.textContent.replace(/\/.*$/, '')
 
         internet_archive.href = `https://web.archive.org/web/*/${src.value}`
       }
