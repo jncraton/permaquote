@@ -183,7 +183,8 @@
         if (src_url.includes('#')) {
           original.href = src_url
         } else {
-          original.href = src_url + '#:~:text=' + text.value.slice(0, 50).replace(/\W*\w+$/, '')
+          let text_fragment = encodeURIComponent(text.value.slice(0, 50).replace(/\W*\w+$/, ''))
+          original.href = src_url + '#:~:text=' + text_fragment
         }
 
         original.textContent = src_url.replace(/^https?:\/\/(www\.|)/, '')
