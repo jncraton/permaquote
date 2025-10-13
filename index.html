@@ -175,7 +175,6 @@
 
       async function update() {
         let excerpt = await encode(text.value, 'deflate-raw')
-        len.textContent = excerpt.length
         share.value =
           window.location.href.split('#')[0] +
           '#' +
@@ -184,6 +183,7 @@
           encodeTitle(title.value) +
           ';' +
           excerpt
+        len.textContent = share.value.length
         render()
       }
 
