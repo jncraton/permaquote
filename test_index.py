@@ -12,4 +12,4 @@ def example_page(page: Page):
     return page
 
 def test_quote(example_page):
-    assert "A working example" in example_page.text_content("body")
+    expect(example_page.get_by_text("A working example")).to_be_visible()
