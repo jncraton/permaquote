@@ -98,6 +98,7 @@
 
     <main>
       <h2 id="out_title"></h2>
+      <time id="out_date"></time>
       <p>…</p>
       <blockquote id="out_text"></blockquote>
       <p>…</p>
@@ -178,6 +179,8 @@
         out_title.textContent = title.value || title.placeholder
         document.title = title.value || title.placeholder
         out_text.innerHTML = text.value.replaceAll('\n\n', '<p>') || text.placeholder
+        out_date.datetime = date.value || ''
+        out_date.textContent = date.value || ''
 
         let src_url = src.value || src.placeholder
 
@@ -202,10 +205,11 @@
         if (hash.length <= 1) {
           document.querySelector('form').style.display = 'block'
         } else {
-          let [fsrc, ftitle, excerpt] = hash.split(';')
+          let [fsrc, ftitle, fdate, excerpt] = hash.split(';')
           src.value = decodeURL(fsrc)
           title.value = decodeTitle(ftitle)
           text.value = await decode(excerpt, 'deflate-raw')
+          date.value = fdate
         }
         update()
       }
