@@ -221,6 +221,11 @@
 
       async function load() {
         let hash = location.hash.slice(1)
+        if (document.location.href.length > 1800) {
+          document.querySelector('main').textContent = 'URL too long'
+          return
+        }
+
         if (hash.length <= 1) {
           document.querySelector('form').style.display = 'block'
         } else {
