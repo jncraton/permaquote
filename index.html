@@ -71,6 +71,10 @@
         padding: 0;
         vertical-align: bottom;
       }
+
+      template {
+        display: none;
+      }
     </style>
   </head>
 
@@ -96,7 +100,9 @@
       <label>Share URL<input id="share" readonly /></label>
     </form>
 
-    <main>
+    <main></main>
+
+    <template id="article">
       <h2 id="out_title"></h2>
       <p><a id="domain"></a></p>
       <p><time id="out_date"></time></p>
@@ -108,7 +114,7 @@
         <a id="original"></a> on the web. If it is not currently accessible there, it may be
         <a id="internet_archive">available via the Internet Archive</a>.
       </p>
-    </main>
+    </template>
 
     <script>
       async function encode(text, algo) {
@@ -177,6 +183,10 @@
       }
 
       function render() {
+        const template = document.querySelector('#article').content.cloneNode(true)
+
+        document.querySelector('main').appendChild(template)
+
         out_title.textContent = title.value || title.placeholder
         document.title = title.value || title.placeholder
         out_text.innerHTML = text.value.replaceAll('\n\n', '<p>') || text.placeholder
