@@ -23,5 +23,8 @@ def test_date(example_page):
 def test_link(example_page):
     expect(example_page.get_by_text("example.com").first).to_be_visible()
 
+def test_href(example_page):
+    expect(example_page.get_by_text("example.com").first).to_have_attribute("href", "https://example.com")
+
 def test_quote(example_page):
     expect(example_page.get_by_text("A working example")).to_be_visible()
