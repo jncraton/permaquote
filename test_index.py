@@ -20,5 +20,8 @@ def test_title(example_page):
 def test_date(example_page):
     expect(example_page.get_by_text("1970-01-01")).to_be_visible()
 
+def test_link(example_page):
+    expect(example_page.get_by_text("example.com").first).to_be_visible()
+
 def test_quote(example_page):
     expect(example_page.get_by_text("A working example")).to_be_visible()
