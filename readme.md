@@ -28,3 +28,7 @@ baseurl#https://example.com/page1;Example+Page;2000-01-02;{quote content compres
 ```
 
 This format allows the original source to be seen in plain text along with its access date so that it can be properly reconstructed from archives if needed. It also directly encodes the original excerpt for easy, immediate viewing.
+
+## Bookmarklet
+
+This tool can be accessed to quickly quote the current selection on a page by clicking <a href="javascript:Promise.resolve(new Blob([getSelection().toString()]).stream()).then(s=>s.pipeThrough(new CompressionStream('deflate-raw'))).then(s=>new Response(s)).then(res=>res.blob()).then(blob=>blob.arrayBuffer()).then(buf=>btoa(String.fromCharCode(...new Uint8Array(buf)))).then(ex=>{let u='https://jncraton.github.io/permaquote/#'+encodeURIComponent(document.location.href).replace(new%20RegExp('%253A','g'),':').replace(new%20RegExp('%252F','g'),'/')+';'+encodeURIComponent(document.title).replace(new%20RegExp('%2520','g'),'+')+';'+(new%20Date().toISOString().slice(0,10))+';'+ex;prompt('Sharable%20URL',u)}));">this bookmarklet</a>.
