@@ -32,7 +32,7 @@ p {
   margin-block: 0;
 }
 
-body > :not(:last-child),
+body > *,
 textarea,
 input {
   width: min(30rem, 95vw);
