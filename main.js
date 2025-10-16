@@ -49,6 +49,17 @@ function decodeTitle(title) {
   return title.replaceAll('+', ' ')
 }
 
+async function decodeHash(hash) {
+  let [src, title, date, excerpt] = hash.split(';')
+
+  return {
+    src: decodeURL(src),
+    title: decodeTitle(title),
+    text: await decode(excerpt, 'deflate-raw'),
+    date: date,
+  }
+}
+
 async function update() {
   let excerpt = await encode(text.value, 'deflate-raw')
   share.value =
@@ -102,13 +113,13 @@ async function load() {
   if (hash.length <= 1) {
     document.querySelector('form').style.display = 'block'
   } else {
-    let [fsrc, ftitle, fdate, excerpt] = hash.split(';')
-    src.value = decodeURL(fsrc)
-    title.value = decodeTitle(ftitle)
-    text.value = await decode(excerpt, 'deflate-raw')
-    date.value = fdate
+    if (document.querySelector('form')) {
+      ;({ src: src.value, title: title.value, text: text.value, date: date.value } = await decodeHash(hash))
+      update()
+    } else {
+      render()
+    }
   }
-  update()
 }
 
 addEventListener('load', load)
