@@ -1,0 +1,74 @@
+      :root {
+        font-size: 20px;
+      }
+
+      html,
+      body,
+      header,
+      nav,
+      h1,
+      h2 {
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        padding-inline: 0.5em;
+      }
+
+      h1,
+      nav a {
+        font-size: 0.7rem;
+        display: inline-block;
+      }
+
+      h2::before {
+        content: 'from';
+        font-size: 50%;
+        display: block;
+      }
+
+      p {
+        margin-block: 0;
+      }
+
+      body > :not(:last-child),
+      textarea,
+      input {
+        width: min(30rem, 95vw);
+        margin: 0 auto;
+        display: block;
+      }
+
+      * {
+        padding-block: 8px;
+      }
+
+      input {
+        display: block;
+        width: 100%;
+        font-size: inherit;
+      }
+      blockquote {
+        border-left: 3px solid #c22;
+        margin-inline: 0;
+        padding-left: 2em;
+      }
+
+      body > form:not(:last-child) {
+        display: none;
+      }
+
+      #original {
+        display: inline-block;
+        max-width: 16em;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        padding: 0;
+        vertical-align: bottom;
+      }
+
+      template {
+        display: none;
+      }
