@@ -119,7 +119,8 @@
         <p>
           The above quote was saved by a user who asserted that it was an excerpt from
           <a id="original"></a> on the web. If it is not currently accessible there, it may be
-          <a id="internet_archive">available via the Internet Archive</a>.
+          <a id="internet_archive">available via the Internet Archive</a> or
+          <a id="archive_today">available via archive.today</a>.
         </p>
       </details>
     </template>
@@ -216,6 +217,7 @@
         domain.textContent = original.textContent.replace(/\/.*$/, '')
 
         internet_archive.href = `https://web.archive.org/web/*/${src.value}`
+        archive_today.href = `https://archive.today/${src.value}`
       }
 
       document.querySelectorAll('input, textarea').forEach(el => {
