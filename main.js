@@ -52,7 +52,15 @@ function decodeTitle(title) {
 async function update() {
   let excerpt = await encode(text.value, 'deflate-raw')
   share.value =
-    window.location.href.split('#')[0] + '#' + encodeURL(src.value) + ';' + encodeTitle(title.value) + ';' + excerpt
+    window.location.href.split('#')[0] +
+    '#' +
+    encodeURL(src.value) +
+    ';' +
+    encodeTitle(title.value) +
+    ';' +
+    encodeURIComponent(date.value) +
+    ';' +
+    excerpt
   len.textContent = share.value.length
   render()
 }
