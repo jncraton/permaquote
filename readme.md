@@ -31,4 +31,8 @@ This format allows the original source to be seen in plain text along with its a
 
 ## Bookmarklet
 
-This tool can be accessed to quickly quote the current selection on a page by clicking <a href="javascript:Promise.resolve(new Blob([getSelection().toString()]).stream()).then(s=>s.pipeThrough(new CompressionStream('deflate-raw'))).then(s=>new Response(s)).then(res=>res.blob()).then(blob=>blob.arrayBuffer()).then(buf=>btoa(String.fromCharCode(...new Uint8Array(buf)))).then(ex=>{let u='https://jncraton.github.io/permaquote/#'+encodeURIComponent(document.location.href).replace(new%20RegExp('%253A','g'),':').replace(new%20RegExp('%252F','g'),'/')+';'+encodeURIComponent(document.title).replace(new%20RegExp('%2520','g'),'+')+';'+(new%20Date().toISOString().slice(0,10))+';'+ex;prompt('Sharable%20URL',u)}));">this bookmarklet</a>.
+This tool can be accessed to quickly quote the current selection on a page by using this bookmarklet:
+
+```
+javascript:Promise.resolve(new Blob([getSelection().toString()]).stream()).then(s=>s.pipeThrough(new CompressionStream('deflate-raw'))).then(s=>new Response(s)).then(res=>res.blob()).then(blob=>blob.arrayBuffer()).then(buf=>btoa(String.fromCharCode(...new Uint8Array(buf)))).then(ex=>{let u='https://jncraton.github.io/permaquote/#'+encodeURIComponent(document.location.href).replace(new%20RegExp('%253A','g'),':').replace(new%20RegExp('%252F','g'),'/')+';'+encodeURIComponent(document.title).replace(new%20RegExp('%2520','g'),'+')+';'+(new%20Date().toISOString().slice(0,10))+';'+ex;prompt('Sharable%20URL',u)}));
+```
