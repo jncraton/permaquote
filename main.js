@@ -54,13 +54,7 @@ async function update() {
   share.value =
     window.location.href.split('#')[0] +
     '#' +
-    encodeURL(src.value) +
-    ';' +
-    encodeTitle(title.value) +
-    ';' +
-    encodeURIComponent(date.value) +
-    ';' +
-    excerpt
+    [encodeURL(src.value), encodeTitle(title.value), encodeURIComponent(date.value), excerpt].join(';')
   len.textContent = share.value.length
   render()
 }
