@@ -86,11 +86,11 @@ function render() {
   archive_today.href = `https://archive.today/${src.value}`
 }
 
-document.querySelectorAll('input, textarea').forEach(el => {
-  el.addEventListener('input', update)
-})
-
 async function load() {
+  document.querySelectorAll('input, textarea').forEach(el => {
+    el.addEventListener('input', update)
+  })
+
   let hash = location.hash.slice(1)
   if (document.location.href.length > 1800) {
     document.querySelector('main').textContent = 'URL too long'
