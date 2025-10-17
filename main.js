@@ -29,8 +29,7 @@ class URIAnchor extends HTMLElement {
 
   constructor() {
     super()
-    const shadow = this.attachShadow({ mode: 'open' })
-    shadow.appendChild(document.createElement('a'))
+    this.appendChild(document.createElement('a'))
   }
 
   connectedCallback() {
@@ -39,7 +38,7 @@ class URIAnchor extends HTMLElement {
 
   attributeChangedCallback(name, oldValue, newValue) {
     const uri = this.attributes.uri.value
-    const a = this.shadowRoot.querySelector('a')
+    const a = this.querySelector('a')
 
     if (this.textContent) {
       a.textContent = this.textContent
