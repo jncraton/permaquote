@@ -83,22 +83,21 @@ async function render(hash) {
   template.querySelector('blockquote').innerHTML = text
   document.title = template.querySelector('h2').textContent
   template.querySelector('time').textContent = template.querySelector('time').datetime
+
+  let text_fragment = encodeURIComponent(text.slice(0, 50).replace(/\W*\w+$/, ''))
+  template.querySelectorAll('a').forEach(a => {
+    if (!src_url.includes('#') && !a.href) {
+      a.href = src_url + '#:~:text=' + text_fragment
+    } else {
+      a.href += src_url
+    }
+
+    if (!a.textContent) {
+      a.textContent = src_url.replace(/^https?:\/\/(www\.|)/, '')
+    }
+  })
+
   document.querySelector('article').replaceWith(template)
-
-  if (src_url.includes('#')) {
-    original.href = src_url
-  } else {
-    let text_fragment = encodeURIComponent(text.slice(0, 50).replace(/\W*\w+$/, ''))
-    original.href = src_url + '#:~:text=' + text_fragment
-  }
-
-  original.textContent = src_url.replace(/^https?:\/\/(www\.|)/, '')
-
-  domain.href = src_url
-  domain.textContent = original.textContent.replace(/\/.*$/, '')
-
-  internet_archive.href = `https://web.archive.org/web/*/${src_url}`
-  archive_today.href = `https://archive.today/${src_url}`
 }
 
 async function load() {
