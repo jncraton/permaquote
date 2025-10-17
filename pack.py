@@ -1,6 +1,8 @@
 import re
 
 template = open('index.html').read()
+template = re.sub("\n[ ]*", "", template)
+
 style = open('style.css').read()
 script = open('main.js').read()
 
