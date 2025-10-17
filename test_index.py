@@ -12,6 +12,11 @@ def web(page: Page):
     return page
 
 @pytest.fixture
+def book(page: Page):
+    page.goto(f"{file_url}#urn:isbn:9780007458424;The+Hobbit;2012;DcjBCcAwDAPAVdSx8jREAYOIiXEw3b695424sCRi68W5XoRBXiViUYqG77/aJ9GRmrBVTJj0fA==")
+    return page
+
+@pytest.fixture
 def blank(page: Page):
     page.goto(f"{file_url}")
     return page
@@ -24,6 +29,9 @@ def test_title(web):
 
 def test_date(web):
     expect(web.get_by_text("1970-01-01")).to_be_visible()
+
+def test_book_date(book):
+    expect(book.get_by_text("2012")).to_be_visible()
 
 def test_link(web):
     expect(web.get_by_text("example.com").first).to_be_visible()
