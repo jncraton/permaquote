@@ -1,5 +1,22 @@
 :root {
   font-size: 20px;
+  background-color: #fff;
+  color: #000;
+}
+
+a:any-link {
+  color: #23d;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    background-color: #000;
+    color: #fff;
+  }
+
+  a:any-link {
+    color: #9be;
+  }
 }
 
 html,
@@ -50,7 +67,7 @@ input {
   font-size: inherit;
 }
 blockquote {
-  border-left: 3px solid #c22;
+  border-left: 3px solid #d22;
   margin-inline: 0;
   padding-left: 2em;
 }
