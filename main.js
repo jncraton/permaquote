@@ -88,7 +88,7 @@ async function render(hash) {
   if (src_url.includes('#')) {
     original.href = src_url
   } else {
-    let text_fragment = encodeURIComponent(text.value.slice(0, 50).replace(/\W*\w+$/, ''))
+    let text_fragment = encodeURIComponent(out_text.innerHTML.slice(0, 50).replace(/\W*\w+$/, ''))
     original.href = src_url + '#:~:text=' + text_fragment
   }
 
@@ -97,15 +97,11 @@ async function render(hash) {
   domain.href = src_url
   domain.textContent = original.textContent.replace(/\/.*$/, '')
 
-  internet_archive.href = `https://web.archive.org/web/*/${src.value}`
-  archive_today.href = `https://archive.today/${src.value}`
+  internet_archive.href = `https://web.archive.org/web/*/${src_url}`
+  archive_today.href = `https://archive.today/${src_url}`
 }
 
 async function load() {
-  document.querySelectorAll('input, textarea').forEach(el => {
-    el.addEventListener('input', update)
-  })
-
   let hash = location.hash.slice(1)
   if (document.location.href.length > 1800) {
     document.querySelector('main').textContent = 'URL too long'
@@ -113,8 +109,13 @@ async function load() {
   }
 
   if (hash.length <= 1) {
-    document.querySelector('form').style.display = 'block'
-    ;({ src: src.value, title: title.value, text: text.value, date: date.value } = await decodeHash(hash))
+    const form = document.querySelector('#form').content.cloneNode(true)
+    document.querySelector('main').appendChild(form)
+
+    document.querySelectorAll('input, textarea').forEach(el => {
+      el.addEventListener('input', update)
+    })
+
     update()
   } else {
     render(hash)

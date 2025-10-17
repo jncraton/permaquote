@@ -55,10 +55,6 @@ blockquote {
   padding-left: 2em;
 }
 
-body > form:not(:last-child) {
-  display: none;
-}
-
 #original {
   display: inline-block;
   max-width: 16em;

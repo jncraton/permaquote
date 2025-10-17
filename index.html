@@ -15,19 +15,22 @@
         <h1><a href="https://jncraton.github.io/permaquote/">permaquote</a></h1>
       </nav>
     </header>
-    <form>
-      <label>Title<input id="title" placeholder="Example Title" /></label>
-      <label>Date<input id="date" type="date" /></label>
-      <label
-        >Excerpt
-        <textarea id="text" spellcheck="false" placeholder="Quoted text…"></textarea>
-      </label>
-      <label>Source URL<input id="src" placeholder="https://example.com" /></label>
-      <output id="len"></output>
-      <label>Share URL<input id="share" readonly /></label>
-    </form>
 
     <main></main>
+
+    <template id="form">
+      <form>
+        <label>Title<input id="title" placeholder="Example Title" /></label>
+        <label>Date<input id="date" type="date" /></label>
+        <label
+          >Excerpt
+          <textarea id="text" spellcheck="false" placeholder="Quoted text…"></textarea>
+        </label>
+        <label>Source URL<input id="src" placeholder="https://example.com" /></label>
+        <output id="len"></output>
+        <label>Share URL<input id="share" readonly /></label>
+      </form>
+    </template>
 
     <template id="article">
       <h2 id="out_title"></h2>
