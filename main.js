@@ -13,13 +13,14 @@ class URIAnchor extends HTMLElement {
 
   attributeChangedCallback(name, oldValue, newValue) {
     const uri = this.attributes.uri.value
+    const a = this.shadowRoot.querySelector('a')
 
-    this.shadowRoot.querySelector('a').textContent = uri.replace(/^https?:\/\/(www\.|)/, '')
-    this.shadowRoot.querySelector('a').href = uri
+    a.textContent = uri.replace(/^https?:\/\/(www\.|)/, '')
+    a.href = uri
 
     if (uri.startsWith('urn:isbn:')) {
-      this.shadowRoot.querySelector('a').removeAttribute('href')
-      this.shadowRoot.querySelector('a').textContent = `ISBN: ${uri.slice(9)}`
+      a.removeAttribute('href')
+      a.textContent = `ISBN: ${uri.slice(9)}`
     }
   }
 }
