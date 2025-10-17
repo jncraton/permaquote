@@ -99,6 +99,12 @@ async function render(hash) {
     }
   })
 
+  template.querySelectorAll('details p').forEach(el => {
+    if (src_url.startsWith(el.dataset.uriScheme)) {
+      el.style.display = 'revert'
+    }
+  })
+
   document.querySelector('article').replaceWith(template)
 }
 

@@ -77,6 +77,10 @@ blockquote {
   padding-left: 1em;
 }
 
+details p {
+  display: none;
+}
+
 #original {
   display: inline-block;
   max-width: 16em;
