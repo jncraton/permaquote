@@ -72,17 +72,16 @@ async function update() {
 async function render(hash) {
   const template = document.querySelector('#article').content.cloneNode(true)
 
-  document.querySelector('article').replaceWith(template)
-
   let src_url
   ;({
     src: src_url,
-    title: out_title.textContent,
-    text: out_text.innerHTML,
-    date: out_date.datetime,
+    title: template.querySelector('h2').textContent,
+    text: template.querySelector('blockquote').innerHTML,
+    date: template.querySelector('time').datetime,
   } = await decodeHash(hash))
 
-  document.title = out_title.textContent
+  document.title = template.querySelector('h2').textContent
+  document.querySelector('article').replaceWith(template)
   out_date.textContent = out_date.datetime
 
   if (src_url.includes('#')) {
