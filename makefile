@@ -8,6 +8,7 @@ format:
 
 index.html: index.template.html
 	python3 pack.py
+	npx prettier --write index.html
 
 test: index.html
 	pytest --browser firefox --browser chromium
