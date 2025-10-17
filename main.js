@@ -114,13 +114,10 @@ async function load() {
 
   if (hash.length <= 1) {
     document.querySelector('form').style.display = 'block'
+    ;({ src: src.value, title: title.value, text: text.value, date: date.value } = await decodeHash(hash))
+    update()
   } else {
-    if (document.querySelector('form')) {
-      ;({ src: src.value, title: title.value, text: text.value, date: date.value } = await decodeHash(hash))
-      update()
-    } else {
-      render(hash)
-    }
+    render(hash)
   }
 }
 
