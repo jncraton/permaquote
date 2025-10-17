@@ -29,6 +29,10 @@ baseurl#https://example.com/page1;Example+Page;2000-01-02;{quote content compres
 
 This format allows the original source to be seen in plain text along with its access date so that it can be properly reconstructed from archives if needed. It also directly encodes the original excerpt for easy, immediate viewing.
 
+## Other Examples
+
+- Book quote from [The Hobbit](https://jncraton.github.io/permaquote/#urn:isbn:9780007458424;The+Hobbit;2025-10-16;VVG5TsQwEO33Kx5paKL9AYoV2yAKRAEN5SQexwbHE3xslL9nnF2QkFz4ePMud++OI4pjLEkWx6PnDLH7jQSDLHHKcHRhlJoiG0gtKIJBL1LlHmQLJxAsZecl3nXI5A3OPgxyPBy6V4tRasr8+/JE0VCwR3SP0WB1G7KTqlpRStPdmpXLlf6Et5o4bNikwki8LzA+Dxw8N8Q/2716Gqlm3sGOjJpyqgUfMSQfJ11tZAYNLcS2uwr2hI8/8sQUVC3XZZGs4Yw0WK9jVKBP+xDIXDhqHVpV4+c80qL7lRNjpkiT1jRsmNs51PGrx2fNBVbSdT5LYDUb2fpyVSdFEi6cNlgfNRUnbb7HSzriTJNa13hN6xk033CiR/0pZXzAcM2z80jUBN/Vl0YZfCkqZjkEWVsThNUbxipJG7/9XQh33Q8=)
+
 ## Bookmarklet
 
 This tool can be accessed to quickly quote the current selection on a page by using this bookmarklet:
