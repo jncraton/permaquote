@@ -20,8 +20,8 @@ class URIAnchor extends HTMLElement {
     }
 
     if (uri.startsWith('http')) {
-      if (this.attributes['href-web-format']?.value) {
-        a.href = this.attributes['href-web-format']?.value.replaceAll('{url}', uri)
+      if (this.attributes['href-web-fmt']?.value) {
+        a.href = this.attributes['href-web-fmt']?.value.replaceAll('{url}', uri)
       } else {
         a.href = uri
       }
@@ -34,8 +34,8 @@ class URIAnchor extends HTMLElement {
     if (uri.startsWith('urn:isbn:')) {
       const isbn = uri.slice(9)
 
-      if (this.attributes['href-isbn-format']?.value) {
-        a.href = this.attributes['href-isbn-format']?.value.replace('{isbn}', isbn)
+      if (this.attributes['href-isbn-fmt']?.value) {
+        a.href = this.attributes['href-isbn-fmt']?.value.replace('{isbn}', isbn)
       }
 
       if (!a.textContent) {
