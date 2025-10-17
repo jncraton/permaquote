@@ -70,7 +70,7 @@ input {
   font-size: inherit;
 }
 blockquote {
-  border-left: 3px solid #d22;
+  border-left: 3px solid var(--accent);
   margin-inline: 0;
   padding-left: 2em;
 }
