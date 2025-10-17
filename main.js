@@ -17,6 +17,7 @@ class URIThumb extends HTMLElement {
       }
 
       this.shadowRoot.querySelector('img').src = `https://covers.openlibrary.org/b/isbn/${isbn}-M.jpg`
+      this.shadowRoot.querySelector('img').height = 192
     }
   }
 }
