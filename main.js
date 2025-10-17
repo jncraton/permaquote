@@ -140,18 +140,6 @@ async function render(hash) {
     el.setAttribute('uri', src_url)
   })
 
-  template.querySelectorAll('a').forEach(a => {
-    if (!src_url.includes('#') && !a.href) {
-      a.href = src_url + '#:~:text=' + text_fragment
-    } else {
-      a.href += src_url
-    }
-
-    if (!a.textContent) {
-      a.textContent = src_url.replace(/^https?:\/\/(www\.|)/, '')
-    }
-  })
-
   template.querySelectorAll('details p').forEach(el => {
     if (src_url.startsWith(el.dataset.uriScheme)) {
       el.style.display = 'revert'
