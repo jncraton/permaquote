@@ -1,29 +1,3 @@
-class URIThumb extends HTMLElement {
-  constructor() {
-    super()
-    this.attachShadow({ mode: 'open' })
-  }
-
-  connectedCallback() {
-    this.attributeChangedCallback()
-  }
-
-  attributeChangedCallback(name, oldValue, newValue) {
-    if (this.attributes.uri?.value.startsWith('urn:isbn:')) {
-      const isbn = this.attributes.uri?.value.slice(9)
-
-      if (!this.shadowRoot.querySelector('img')) {
-        this.shadowRoot.appendChild(document.createElement('img'))
-      }
-
-      this.shadowRoot.querySelector('img').src = `https://covers.openlibrary.org/b/isbn/${isbn}-M.jpg`
-      this.shadowRoot.querySelector('img').height = 192
-    }
-  }
-}
-
-customElements.define('uri-thumb', URIThumb)
-
 class URIAnchor extends HTMLElement {
   static observedAttributes = ['uri']
 
@@ -73,40 +47,6 @@ class URIAnchor extends HTMLElement {
 }
 
 customElements.define('uri-anchor', URIAnchor)
-
-class URIInfo extends HTMLElement {
-  constructor() {
-    super()
-    this.attachShadow({ mode: 'open' })
-  }
-
-  connectedCallback() {
-    this.attributeChangedCallback()
-  }
-
-  async attributeChangedCallback(name, oldValue, newValue) {
-    if (this.attributes.uri?.value.startsWith('urn:isbn:')) {
-      const isbn = this.attributes.uri?.value.slice(9)
-      const p = document.createElement('p')
-      p.textContent = `Loading metadata...`
-      this.shadowRoot.replaceChildren(p)
-      try {
-        const res = await fetch(`https://openlibrary.org/search.json?q=isbn:${isbn}`)
-        const result = await res.json()
-
-        const title = result.docs[0].title
-        const author = result.docs[0].author_name[0]
-        const year = result.docs[0].first_publish_year
-
-        p.textContent = ` ${year} ${author}`
-      } catch {
-        p.textContent = `Unable to load metadata`
-      }
-    }
-  }
-}
-
-customElements.define('uri-info', URIInfo)
 
 async function encode(text, algo) {
   let stream = new Blob([text]).stream()
