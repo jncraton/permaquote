@@ -1,22 +1,25 @@
 :root {
-  font-size: 20px;
-  background-color: #fff;
-  color: #000;
-}
-
-a:any-link {
-  color: #23d;
+  --bg: #fff;
+  --text: #000;
+  --accent: #23d;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    background-color: #000;
-    color: #fff;
+    --bg: #000;
+    --text: #fff;
+    --accent: #9be;
   }
+}
 
-  a:any-link {
-    color: #9be;
-  }
+:root {
+  font-size: 20px;
+  background-color: var(--bg);
+  color: var(--text);
+}
+
+a:any-link {
+  color: var(--accent);
 }
 
 html,
