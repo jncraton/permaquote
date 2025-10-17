@@ -72,7 +72,7 @@ async function update() {
 async function render(hash) {
   const template = document.querySelector('#article').content.cloneNode(true)
 
-  document.querySelector('main').appendChild(template)
+  document.querySelector('article').replaceWith(template)
 
   let src_url
   ;({
@@ -110,7 +110,7 @@ async function load() {
 
   if (hash.length <= 1) {
     const form = document.querySelector('#form').content.cloneNode(true)
-    document.querySelector('main').appendChild(form)
+    document.querySelector('main').prepend(form)
 
     document.querySelectorAll('input, textarea').forEach(el => {
       el.addEventListener('input', update)
