@@ -62,6 +62,8 @@ class URIAnchor extends HTMLElement {
 
       if (this.attributes['href-isbn-fmt']?.value) {
         a.href = this.attributes['href-isbn-fmt']?.value.replace('{isbn}', isbn)
+      } else {
+        a.href = `https://openlibrary.org/isbn/${isbn}`
       }
 
       if (!a.textContent) {
