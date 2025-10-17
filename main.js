@@ -15,12 +15,32 @@ class URIAnchor extends HTMLElement {
     const uri = this.attributes.uri.value
     const a = this.shadowRoot.querySelector('a')
 
-    a.textContent = uri.replace(/^https?:\/\/(www\.|)/, '')
-    a.href = uri
+    if (this.textContent) {
+      a.textContent = this.textContent
+    }
+
+    if (uri.startsWith('http')) {
+      if (this.attributes['href-web-format']?.value) {
+        a.href = this.attributes['href-web-format']?.value.replaceAll('{url}', uri)
+      } else {
+        a.href = uri
+      }
+
+      if (!a.textContent) {
+        a.textContent = uri.replace(/^https?:\/\/(www\.|)/, '')
+      }
+    }
 
     if (uri.startsWith('urn:isbn:')) {
-      a.removeAttribute('href')
-      a.textContent = `ISBN: ${uri.slice(9)}`
+      const isbn = uri.slice(9)
+
+      if (this.attributes['href-isbn-format']?.value) {
+        a.href = this.attributes['href-isbn-format']?.value.replace('{isbn}', isbn)
+      }
+
+      if (!a.textContent) {
+        a.textContent = `ISBN: ${isbn}`
+      }
     }
   }
 }
