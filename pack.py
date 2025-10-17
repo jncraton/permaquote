@@ -5,6 +5,7 @@ template = re.sub("\n[ ]*", "", template)
 
 style = open('style.css').read()
 script = open('main.js').read()
+script = re.sub("\n[\n ]*", "\n", script)
 
 style = re.sub("\n[ ]*", "", style)
 
