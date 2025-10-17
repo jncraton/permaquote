@@ -81,8 +81,8 @@ async function render(hash) {
   } = await decodeHash(hash))
 
   document.title = template.querySelector('h2').textContent
+  template.querySelector('time').textContent = template.querySelector('time').datetime
   document.querySelector('article').replaceWith(template)
-  out_date.textContent = out_date.datetime
 
   if (src_url.includes('#')) {
     original.href = src_url
