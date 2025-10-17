@@ -1,4 +1,4 @@
-all: lint
+all: index.html
 
 lint:
 	npx prettier@3.6.2 --check .
@@ -6,11 +6,14 @@ lint:
 format:
 	npx prettier@3.6.2 --write .
 
-test:
+index.html: index.template.html
+	python3 pack.py
+
+test: index.html
 	pytest --browser firefox --browser chromium
 
 dev-deps:
 	pip3 install pytest-playwright==0.7.1 && playwright install
 
 clean:
-	rm -rf .pytest_cache __pycache__
+	rm -rf .pytest_cache __pycache__ index.html

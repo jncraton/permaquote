@@ -1,6 +1,6 @@
 import re
 
-template = open('index.html').read()
+template = open('index.template.html').read()
 template = re.sub("\n[ ]*", "", template)
 
 style = open('style.css').read()
@@ -12,5 +12,5 @@ style = re.sub("\n[ ]*", "", style)
 template = template.replace('<link rel="stylesheet" href="style.css" type="text/css" />', f"<style>{style}</style>")
 template = template.replace('<script src="main.js"></script>', f"<script>{script}</script>")
 
-with open('index.min.html', 'w') as f:
+with open('index.html', 'w') as f:
     f.write(template)
