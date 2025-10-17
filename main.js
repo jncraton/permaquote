@@ -66,21 +66,24 @@ async function update() {
   share.value = window.location.href.split('#')[0] + '#' + hash
 
   len.textContent = share.value.length
-  render()
+  render(hash)
 }
 
-function render() {
+async function render(hash) {
   const template = document.querySelector('#article').content.cloneNode(true)
 
   document.querySelector('main').appendChild(template)
 
-  out_title.textContent = title.value || title.placeholder
-  document.title = title.value || title.placeholder
-  out_text.innerHTML = text.value.replaceAll('\n\n', '<p>') || text.placeholder
-  out_date.datetime = date.value || ''
-  out_date.textContent = date.value || ''
+  let src_url
+  ;({
+    src: src_url,
+    title: out_title.textContent,
+    text: out_text.innerHTML,
+    date: out_date.datetime,
+  } = await decodeHash(hash))
 
-  let src_url = src.value || src.placeholder
+  document.title = out_title.textContent
+  out_date.textContent = out_date.datetime
 
   if (src_url.includes('#')) {
     original.href = src_url
@@ -116,7 +119,7 @@ async function load() {
       ;({ src: src.value, title: title.value, text: text.value, date: date.value } = await decodeHash(hash))
       update()
     } else {
-      render()
+      render(hash)
     }
   }
 }
