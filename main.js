@@ -1,3 +1,28 @@
+class URIThumb extends HTMLElement {
+  constructor() {
+    super()
+    this.attachShadow({ mode: 'open' })
+  }
+
+  connectedCallback() {
+    this.attributeChangedCallback()
+  }
+
+  attributeChangedCallback(name, oldValue, newValue) {
+    if (this.attributes.uri?.value.startsWith('urn:isbn:')) {
+      const isbn = this.attributes.uri?.value.slice(9)
+
+      if (!this.shadowRoot.querySelector('img')) {
+        this.shadowRoot.appendChild(document.createElement('img'))
+      }
+
+      this.shadowRoot.querySelector('img').src = `https://covers.openlibrary.org/b/isbn/${isbn}-M.jpg`
+    }
+  }
+}
+
+customElements.define('uri-thumb', URIThumb)
+
 class URIAnchor extends HTMLElement {
   static observedAttributes = ['uri']
 
@@ -136,7 +161,7 @@ async function render(hash) {
   template.querySelector('time').textContent = template.querySelector('time').datetime
 
   let text_fragment = encodeURIComponent(text.slice(0, 50).replace(/\W*\w+$/, ''))
-  template.querySelectorAll('uri-anchor').forEach(el => {
+  template.querySelectorAll('uri-anchor,uri-thumb').forEach(el => {
     el.setAttribute('uri', src_url)
   })
 
