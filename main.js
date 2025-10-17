@@ -1,3 +1,31 @@
+class URIAnchor extends HTMLElement {
+  static observedAttributes = ['uri']
+
+  constructor() {
+    super()
+    const shadow = this.attachShadow({ mode: 'open' })
+    shadow.appendChild(document.createElement('a'))
+  }
+
+  connectedCallback() {
+    this.attributeChangedCallback()
+  }
+
+  attributeChangedCallback(name, oldValue, newValue) {
+    const uri = this.attributes.uri.value
+
+    this.shadowRoot.querySelector('a').textContent = uri.replace(/^https?:\/\/(www\.|)/, '')
+    this.shadowRoot.querySelector('a').href = uri
+
+    if (uri.startsWith('urn:isbn:')) {
+      this.shadowRoot.querySelector('a').removeAttribute('href')
+      this.shadowRoot.querySelector('a').textContent = `ISBN: ${uri.slice(9)}`
+    }
+  }
+}
+
+customElements.define('uri-anchor', URIAnchor)
+
 async function encode(text, algo) {
   let stream = new Blob([text]).stream()
 
@@ -87,6 +115,10 @@ async function render(hash) {
   template.querySelector('time').textContent = template.querySelector('time').datetime
 
   let text_fragment = encodeURIComponent(text.slice(0, 50).replace(/\W*\w+$/, ''))
+  template.querySelectorAll('uri-anchor').forEach(el => {
+    el.setAttribute('uri', src_url)
+  })
+
   template.querySelectorAll('a').forEach(a => {
     if (!src_url.includes('#') && !a.href) {
       a.href = src_url + '#:~:text=' + text_fragment
