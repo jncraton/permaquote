@@ -81,7 +81,7 @@ details p {
   display: none;
 }
 
-#original {
+uri-anchor:not[href-isbn-format]:not[href-isbn-format] {
   display: inline-block;
   max-width: 16em;
   overflow: hidden;
