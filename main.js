@@ -72,14 +72,15 @@ async function update() {
 async function render(hash) {
   const template = document.querySelector('#article').content.cloneNode(true)
 
-  let src_url
+  let src_url, text
   ;({
     src: src_url,
     title: template.querySelector('h2').textContent,
-    text: template.querySelector('blockquote').innerHTML,
+    text: text,
     date: template.querySelector('time').datetime,
   } = await decodeHash(hash))
 
+  template.querySelector('blockquote').innerHTML = text
   document.title = template.querySelector('h2').textContent
   template.querySelector('time').textContent = template.querySelector('time').datetime
   document.querySelector('article').replaceWith(template)
@@ -87,7 +88,7 @@ async function render(hash) {
   if (src_url.includes('#')) {
     original.href = src_url
   } else {
-    let text_fragment = encodeURIComponent(out_text.innerHTML.slice(0, 50).replace(/\W*\w+$/, ''))
+    let text_fragment = encodeURIComponent(text.slice(0, 50).replace(/\W*\w+$/, ''))
     original.href = src_url + '#:~:text=' + text_fragment
   }
 
