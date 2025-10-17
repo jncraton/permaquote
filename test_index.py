@@ -33,6 +33,14 @@ def test_date(web):
 def test_book_date(book):
     expect(book.get_by_text("2012")).to_be_visible()
 
+def test_book_about(book):
+    book.get_by_text("About", exact=True).click()
+    expect(book.get_by_text("from a book")).to_be_visible()
+
+def test_web_about(web):
+    web.get_by_text("About", exact=True).click()
+    expect(web.get_by_text("on the web")).to_be_visible()
+
 def test_link(web):
     expect(web.get_by_text("example.com").first).to_be_visible()
 
