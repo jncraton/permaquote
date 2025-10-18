@@ -175,6 +175,12 @@ async function load() {
     update()
   } else {
     render(hash)
+
+    document.addEventListener('keydown', event => {
+      if (event.key === 'i') {
+        showEdit()
+      }
+    })
   }
 }
 
