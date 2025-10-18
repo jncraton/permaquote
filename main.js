@@ -117,7 +117,7 @@ async function update() {
   let hash = [encodeURL(src.value), encodeTitle(title.value), encodeURIComponent(date.value), excerpt].join(';')
   share.value = window.location.href.split('#')[0] + '#' + hash
 
-  len.textContent = share.value.length
+  len.textContent = share.value.length + ' bytes'
   render(hash)
 }
 
