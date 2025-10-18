@@ -125,13 +125,13 @@ async function decodeHash(hash) {
   return {
     src: src ? decodeURL(src) : '',
     title: title ? decodeTitle(title) : '',
-    text: excerpt ? await decode(excerpt, 'deflate-raw') : '',
+    text: excerpt ? await decode(excerpt) : '',
     date: date ? date : '',
   }
 }
 
 async function update() {
-  let excerpt = await encode(text.value, 'deflate-raw')
+  let excerpt = await encode(text.value)
   let hash = [encodeURL(src.value), encodeTitle(title.value), encodeURIComponent(date.value), excerpt].join(';')
   share.value = window.location.href.split('#')[0] + '#' + hash
 
