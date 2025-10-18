@@ -152,14 +152,22 @@ async function render(hash) {
   document.querySelector('article').replaceWith(template)
 }
 
-function showEdit() {
+async function showEdit() {
   if (!document.querySelector('main form')) {
-    const form = document.querySelector('#form').content.cloneNode(true)
-    document.querySelector('main').prepend(form)
+    document.querySelector('main').prepend(document.querySelector('#form').content.cloneNode(true))
+    let form = document.querySelector('main form')
 
     document.querySelectorAll('input, textarea').forEach(el => {
       el.addEventListener('input', update)
     })
+    ;({
+      src: form.querySelector('#src').value,
+      title: form.querySelector('#title').value,
+      text: form.querySelector('#text').value,
+      date: form.querySelector('#date').value,
+    } = await decodeHash(location.hash.slice(1)))
+
+    update()
   }
 }
 
@@ -172,7 +180,6 @@ async function load() {
 
   if (hash.length <= 1) {
     showEdit()
-    update()
   } else {
     render(hash)
 
