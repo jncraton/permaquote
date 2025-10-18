@@ -56,7 +56,9 @@ p {
 
 body > *,
 textarea,
-input {
+input,
+output,
+select {
   width: min(30rem, 95vw);
   margin: 0 auto;
   display: block;

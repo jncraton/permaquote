@@ -50,7 +50,20 @@ class URIAnchor extends HTMLElement {
 
 customElements.define('uri-anchor', URIAnchor)
 
-async function encode(text, algo) {
+const algos = {
+  d: 'deflate-raw',
+  '+': 'url',
+}
+
+async function encode(text) {
+  let enc = encoding.value
+
+  if (enc == '+') {
+    return '+' + encodeTitle(text)
+  }
+
+  let algo = algos[enc]
+
   let stream = new Blob([text]).stream()
 
   if (algo) {
@@ -61,10 +74,15 @@ async function encode(text, algo) {
   const blob = await res.blob()
   const buffer = await blob.arrayBuffer()
 
-  return btoa(String.fromCharCode(...new Uint8Array(buffer)))
+  return enc + btoa(String.fromCharCode(...new Uint8Array(buffer)))
 }
 
-async function decode(text, algo) {
+async function decode(text) {
+  let algo = algos[text[0]]
+  text = text.slice(1)
+
+  if (algo == 'url') return decodeTitle(text)
+
   const binary = Uint8Array.from(atob(text), c => c.charCodeAt(0))
 
   let stream = new Blob([binary]).stream()
@@ -157,7 +175,7 @@ async function showEdit() {
     document.querySelector('main').prepend(document.querySelector('#form').content.cloneNode(true))
     let form = document.querySelector('main form')
 
-    document.querySelectorAll('input, textarea').forEach(el => {
+    document.querySelectorAll('input, textarea, select').forEach(el => {
       el.addEventListener('input', update)
     })
     ;({

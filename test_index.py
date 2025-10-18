@@ -8,12 +8,12 @@ file_url = Path("index.html").resolve().as_uri()
 
 @pytest.fixture
 def web(page: Page):
-    page.goto(f"{file_url}#https://example.com;The+Title;1970-01-01;c1Qozy/KzsxLV0itSMwtyEkFAA==")
+    page.goto(f"{file_url}#https://example.com;The+Title;1970-01-01;dc1Qozy/KzsxLV0itSMwtyEkFAA==")
     return page
 
 @pytest.fixture
 def book(page: Page):
-    page.goto(f"{file_url}#urn:isbn:9780007458424;The+Hobbit;2012;DcjBCcAwDAPAVdSx8jREAYOIiXEw3b695424sCRi68W5XoRBXiViUYqG77/aJ9GRmrBVTJj0fA==")
+    page.goto(f"{file_url}#urn:isbn:9780007458424;The+Hobbit;2012;dDcjBCcAwDAPAVdSx8jREAYOIiXEw3b695424sCRi68W5XoRBXiViUYqG77/aJ9GRmrBVTJj0fA==")
     return page
 
 @pytest.fixture
