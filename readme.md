@@ -31,7 +31,7 @@ This format allows the original source to be seen in plain text along with its a
 
 ## Other Examples
 
-- Book quote from [The Hobbit](https://jncraton.github.io/permaquote/#urn:isbn:9780007458424;The+Hobbit;2025-10-16;VVG5TsQwEO33Kx5paKL9AYoV2yAKRAEN5SQexwbHE3xslL9nnF2QkFz4ePMud++OI4pjLEkWx6PnDLH7jQSDLHHKcHRhlJoiG0gtKIJBL1LlHmQLJxAsZecl3nXI5A3OPgxyPBy6V4tRasr8+/JE0VCwR3SP0WB1G7KTqlpRStPdmpXLlf6Et5o4bNikwki8LzA+Dxw8N8Q/2716Gqlm3sGOjJpyqgUfMSQfJ11tZAYNLcS2uwr2hI8/8sQUVC3XZZGs4Yw0WK9jVKBP+xDIXDhqHVpV4+c80qL7lRNjpkiT1jRsmNs51PGrx2fNBVbSdT5LYDUb2fpyVSdFEi6cNlgfNRUnbb7HSzriTJNa13hN6xk033CiR/0pZXzAcM2z80jUBN/Vl0YZfCkqZjkEWVsThNUbxipJG7/9XQh33Q8=)
+- Book quote from [The Hobbit](https://jncraton.github.io/permaquote/#urn:isbn:9780007458424;The+Hobbit;1937;VVG5TsQwEO33Kx5paKL9AYoV2yAKRAEN5SQexwbHE3xslL9nnF2QkFz4ePMud++OI4pjLEkWx6PnDLH7jQSDLHHKcHRhlJoiG0gtKIJBL1LlHmQLJxAsZecl3nXI5A3OPgxyPBy6V4tRasr8+/JE0VCwR3SP0WB1G7KTqlpRStPdmpXLlf6Et5o4bNikwki8LzA+Dxw8N8Q/2716Gqlm3sGOjJpyqgUfMSQfJ11tZAYNLcS2uwr2hI8/8sQUVC3XZZGs4Yw0WK9jVKBP+xDIXDhqHVpV4+c80qL7lRNjpkiT1jRsmNs51PGrx2fNBVbSdT5LYDUb2fpyVSdFEi6cNlgfNRUnbb7HSzriTJNa13hN6xk033CiR/0pZXzAcM2z80jUBN/Vl0YZfCkqZjkEWVsThNUbxipJG7/9XQh33Q8=)
 
 ## Bookmarklet
 
