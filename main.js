@@ -3,7 +3,9 @@ class URIAnchor extends HTMLElement {
 
   constructor() {
     super()
-    this.appendChild(document.createElement('a'))
+    const a = document.createElement('a')
+    a.textContent = this.textContent
+    this.replaceChildren(a)
   }
 
   connectedCallback() {
