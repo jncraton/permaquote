@@ -21,6 +21,10 @@ def blank(page: Page):
     page.goto(f"{file_url}")
     return page
 
+def test_url_encoding(page: Page):
+    page.goto(f"{file_url}#https://example.com;The+Title;1970-01-01;+A+working+example")
+    expect(page.get_by_text("A working example")).to_be_visible()
+
 def test_page_title(web):
     expect(web).to_have_title("The Title")
 
