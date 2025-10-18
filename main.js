@@ -105,10 +105,10 @@ async function decodeHash(hash) {
   let [src, title, date, excerpt] = hash.split(';')
 
   return {
-    src: decodeURL(src),
-    title: decodeTitle(title),
-    text: await decode(excerpt, 'deflate-raw'),
-    date: date,
+    src: src ? decodeURL(src) : '',
+    title: title ? decodeTitle(title) : '',
+    text: excerpt ? await decode(excerpt, 'deflate-raw') : '',
+    date: date ? date : '',
   }
 }
 
