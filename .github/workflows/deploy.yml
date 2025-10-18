@@ -29,8 +29,11 @@ jobs:
       - name: Setup Pages
         uses: actions/configure-pages@v5
 
+      - name: Instal deps
+        run: sudo apt install -y imagemagick
+
       - name: Build Site
-        run: make
+        run: make && make favicon.ico
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
