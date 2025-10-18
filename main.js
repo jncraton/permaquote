@@ -153,12 +153,14 @@ async function render(hash) {
 }
 
 function showEdit() {
-  const form = document.querySelector('#form').content.cloneNode(true)
-  document.querySelector('main').prepend(form)
+  if (!document.querySelector('main form')) {
+    const form = document.querySelector('#form').content.cloneNode(true)
+    document.querySelector('main').prepend(form)
 
-  document.querySelectorAll('input, textarea').forEach(el => {
-    el.addEventListener('input', update)
-  })
+    document.querySelectorAll('input, textarea').forEach(el => {
+      el.addEventListener('input', update)
+    })
+  }
 }
 
 async function load() {
