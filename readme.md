@@ -43,10 +43,11 @@ javascript:Promise.resolve(new Blob([getSelection().toString()]).stream()).then(
 
 ## Alternatives
 
-| Service                                  | Free |
-|------------------------------------------|------|
-| [archive.org](https://archive.org)       |  ✔   |
-| [archive.today](https://archive.today)   |  ✔   |
-| [perma.cc](https://perma.cc)             |      |
-| [WebCite](https://webcitation.org/)      |  ✔   |
-| [Pastebin.com](https://pastebin.com/)    |  ✔   |
+| Service                                  | Free | Transparent Source |
+|:-----------------------------------------|:----:|:------------------:|
+| permaquote                               |  ✔   | ✔                  |
+| [archive.org](https://archive.org)       |  ✔   | ✔                  |
+| [archive.today](https://archive.today)   |  ✔   |                    |
+| [perma.cc](https://perma.cc)             |      |                    |
+| [WebCite](https://webcitation.org/)      |  ✔   |                    |
+| [Pastebin.com](https://pastebin.com/)    |  ✔   |                    |
