@@ -43,7 +43,10 @@ javascript:Promise.resolve(new Blob([getSelection().toString()]).stream()).then(
 
 ## Alternatives
 
-- https://archive.org
-- https://archive.today
-- https://perma.cc
-- https://webcitation.org/
+| Service                                  | Free |
+|------------------------------------------|------|
+| [archive.org](https://archive.org)       |  ✔   |
+| [archive.today](https://archive.today)   |  ✔   |
+| [perma.cc](https://perma.cc)             |      |
+| [WebCite](https://webcitation.org/)      |  ✔   |
+| [Pastebin.com](https://pastebin.com/)    |  ✔   |
