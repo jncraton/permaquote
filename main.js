@@ -65,14 +65,12 @@ class QuoteSourceInfo extends HTMLElement {
     summary.textContent = 'About'
     details.appendChild(summary)
 
-    // Escape HTML to prevent XSS
-    const escapeHtml = str =>
-      str
-        .replace(/&/g, '&amp;')
-        .replace(/</g, '&lt;')
-        .replace(/>/g, '&gt;')
-        .replace(/"/g, '&quot;')
-        .replace(/'/g, '&#039;')
+    // Escape HTML to prevent XSS using DOM
+    const escapeHtml = str => {
+      const p = document.createElement('p')
+      p.textContent = str
+      return p.innerHTML
+    }
 
     if (uri.startsWith('http')) {
       const p = document.createElement('p')
