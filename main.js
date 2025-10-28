@@ -50,6 +50,42 @@ class URIAnchor extends HTMLElement {
 
 customElements.define('uri-anchor', URIAnchor)
 
+class QuoteSourceInfo extends HTMLElement {
+  static observedAttributes = ['uri']
+
+  constructor() {
+    super()
+    this.attachShadow({ mode: 'open' })
+  }
+
+  connectedCallback() {
+    this.attributeChangedCallback()
+  }
+
+  attributeChangedCallback(name, oldValue, newValue) {
+    const uri = this.attributes.uri?.value || ''
+
+    const details = document.createElement('details')
+    const summary = document.createElement('summary')
+    summary.textContent = 'About'
+    details.appendChild(summary)
+
+    if (uri.startsWith('http')) {
+      const p = document.createElement('p')
+      p.innerHTML = `The above quote was saved by a user who asserted that it was an excerpt from <uri-anchor uri="${uri}"></uri-anchor> on the web. If it is not currently accessible there, it may be <uri-anchor uri="${uri}" href-web-fmt="https://web.archive.org/web/*/{url}">available via the Internet Archive</uri-anchor> or <uri-anchor uri="${uri}" href-web-fmt="https://archive.today/{url}">available via archive.today</uri-anchor>.`
+      details.appendChild(p)
+    } else if (uri.startsWith('urn:isbn:')) {
+      const p = document.createElement('p')
+      p.innerHTML = `The above quote was saved by a user who asserted that it was an excerpt from a book. More information about the book should be accessible via its ISBN on <uri-anchor uri="${uri}" href-isbn-fmt="https://openlibrary.org/isbn/{isbn}">OpenLibrary</uri-anchor>.`
+      details.appendChild(p)
+    }
+
+    this.shadowRoot.replaceChildren(details)
+  }
+}
+
+customElements.define('quote-source-info', QuoteSourceInfo)
+
 const algos = {
   d: 'deflate-raw',
   '+': 'url',
@@ -157,14 +193,8 @@ async function render(hash) {
   template.querySelector('time').textContent = template.querySelector('time').datetime
 
   let text_fragment = encodeURIComponent(text.slice(0, 50).replace(/\W*\w+$/, ''))
-  template.querySelectorAll('uri-anchor,uri-thumb,uri-info').forEach(el => {
+  template.querySelectorAll('uri-anchor,uri-thumb,uri-info,quote-source-info').forEach(el => {
     el.setAttribute('uri', src_url)
-  })
-
-  template.querySelectorAll('details p').forEach(el => {
-    if (src_url.startsWith(el.dataset.uriScheme)) {
-      el.style.display = 'revert'
-    }
   })
 
   document.querySelector('article').replaceWith(template)
