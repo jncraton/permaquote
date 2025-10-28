@@ -53,11 +53,6 @@ customElements.define('uri-anchor', URIAnchor)
 class QuoteSourceInfo extends HTMLElement {
   static observedAttributes = ['uri']
 
-  constructor() {
-    super()
-    this.attachShadow({ mode: 'open' })
-  }
-
   connectedCallback() {
     this.attributeChangedCallback()
   }
@@ -70,17 +65,28 @@ class QuoteSourceInfo extends HTMLElement {
     summary.textContent = 'About'
     details.appendChild(summary)
 
+    // Escape HTML to prevent XSS
+    const escapeHtml = str =>
+      str
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#039;')
+
     if (uri.startsWith('http')) {
       const p = document.createElement('p')
-      p.innerHTML = `The above quote was saved by a user who asserted that it was an excerpt from <uri-anchor uri="${uri}"></uri-anchor> on the web. If it is not currently accessible there, it may be <uri-anchor uri="${uri}" href-web-fmt="https://web.archive.org/web/*/{url}">available via the Internet Archive</uri-anchor> or <uri-anchor uri="${uri}" href-web-fmt="https://archive.today/{url}">available via archive.today</uri-anchor>.`
+      const escapedUri = escapeHtml(uri)
+      p.innerHTML = `The above quote was saved by a user who asserted that it was an excerpt from <uri-anchor uri="${escapedUri}"></uri-anchor> on the web. If it is not currently accessible there, it may be <uri-anchor uri="${escapedUri}" href-web-fmt="https://web.archive.org/web/*/{url}">available via the Internet Archive</uri-anchor> or <uri-anchor uri="${escapedUri}" href-web-fmt="https://archive.today/{url}">available via archive.today</uri-anchor>.`
       details.appendChild(p)
     } else if (uri.startsWith('urn:isbn:')) {
       const p = document.createElement('p')
-      p.innerHTML = `The above quote was saved by a user who asserted that it was an excerpt from a book. More information about the book should be accessible via its ISBN on <uri-anchor uri="${uri}" href-isbn-fmt="https://openlibrary.org/isbn/{isbn}">OpenLibrary</uri-anchor>.`
+      const escapedUri = escapeHtml(uri)
+      p.innerHTML = `The above quote was saved by a user who asserted that it was an excerpt from a book. More information about the book should be accessible via its ISBN on <uri-anchor uri="${escapedUri}" href-isbn-fmt="https://openlibrary.org/isbn/{isbn}">OpenLibrary</uri-anchor>.`
       details.appendChild(p)
     }
 
-    this.shadowRoot.replaceChildren(details)
+    this.replaceChildren(details)
   }
 }
 
