@@ -79,10 +79,6 @@ blockquote {
   padding-left: 1em;
 }
 
-details p {
-  display: none;
-}
-
 uri-anchor:not[href-isbn-format]:not[href-isbn-format] {
   display: inline-block;
   max-width: 16em;
