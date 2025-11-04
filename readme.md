@@ -4,7 +4,7 @@
 [![Test](https://github.com/jncraton/permaquote/actions/workflows/test.yml/badge.svg)](https://github.com/jncraton/permaquote/actions/workflows/test.yml)
 [![Deploy](https://github.com/jncraton/permaquote/actions/workflows/deploy.yml/badge.svg)](https://github.com/jncraton/permaquote/actions/workflows/deploy.yml)
 
-Quote cited excepts from anything with a [URI](https://en.wikipedia.org/wiki/Uniform_Resource_Identifier)
+Quote cited excerpts from anything with a [URI](https://en.wikipedia.org/wiki/Uniform_Resource_Identifier)
 
 ## Purpose
 
