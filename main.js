@@ -126,7 +126,7 @@ async function decodeHash(hash) {
     src: src ? decodeURL(src) : '',
     title: title ? decodeTitle(title) : '',
     text: excerpt ? await decode(excerpt) : '',
-    date: date ? date : '',
+    date: date ? decodeTitle(date) : '',
   }
 }
 
