@@ -17,6 +17,11 @@ def book(page: Page):
     return page
 
 @pytest.fixture
+def book_author(page: Page):
+    page.goto(f"{file_url}##urn:isbn:9780000000000;Title;AuthorFirst+AuthorLast;dC0mtKAEA")
+    return page
+
+@pytest.fixture
 def blank(page: Page):
     page.goto(f"{file_url}")
     return page
@@ -36,6 +41,9 @@ def test_date(web):
 
 def test_book_date(book):
     expect(book.get_by_text("2012")).to_be_visible()
+
+def test_book_author(book_author):
+    expect(book_author.get_by_text("AuthorFirst AuthorLast")).to_be_visible()
 
 def test_book_about(book):
     book.get_by_text("About", exact=True).click()
