@@ -81,7 +81,7 @@ async function decode(text) {
   let algo = algos[text[0]]
   text = text.slice(1)
 
-  if (algo == 'url') return decodeTitle(text)
+  if (algo == 'url') return decodeHeading(text)
 
   const binary = Uint8Array.from(atob(text), c => c.charCodeAt(0))
 
@@ -114,7 +114,7 @@ function encodeTitle(title) {
   return title
 }
 
-function decodeTitle(title) {
+function decodeHeading(title) {
   title = decodeURIComponent(title)
   return title.replaceAll('+', ' ')
 }
@@ -124,9 +124,9 @@ async function decodeHash(hash) {
 
   return {
     src: src ? decodeURL(src) : '',
-    title: title ? decodeTitle(title) : '',
+    title: title ? decodeHeading(title) : '',
     text: excerpt ? await decode(excerpt) : '',
-    date: date ? decodeTitle(date) : '',
+    date: date ? decodeHeading(date) : '',
   }
 }
 
