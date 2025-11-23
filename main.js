@@ -168,6 +168,10 @@ async function render(hash) {
   })
 
   document.querySelector('article').replaceWith(template)
+
+  const metadata = await urinfo(src_url)
+
+  console.log(metadata)
 }
 
 async function showEdit() {

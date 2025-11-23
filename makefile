@@ -6,9 +6,12 @@ lint:
 format:
 	npx prettier@3.6.2 --write .
 
-index.html: index.template.html
+index.html: index.template.html urinfo.js
 	python3 pack.py
 	npx prettier@3.6.2 --write index.html
+
+urinfo.js:
+	wget https://github.com/jncraton/urinfo/releases/download/v0.1.0/urinfo.js
 
 test: index.html
 	pytest --browser firefox --browser chromium
