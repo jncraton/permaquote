@@ -156,9 +156,7 @@ async function render(hash) {
     date: template.querySelector('time').datetime,
   } = await decodeHash(hash))
 
-  text = '<p>' + text.split('\n\n').join('<p>')
-
-  template.querySelector('blockquote').innerHTML = text
+  template.querySelector('blockquote').textContent = text
   document.title = template.querySelector('h2').textContent
   template.querySelector('time').textContent = template.querySelector('time').datetime
 
