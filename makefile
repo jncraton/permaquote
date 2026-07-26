@@ -26,4 +26,4 @@ dev-deps:
 	pip3 install pytest-playwright==0.7.1 && playwright install
 
 clean:
-	rm -rf .pytest_cache __pycache__ index.html favicon* urinfo.js
+	rm -rf .pytest_cache __pycache__ index.html favicon* urinfo.js camel.js
