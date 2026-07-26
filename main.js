@@ -53,6 +53,7 @@ customElements.define('uri-anchor', URIAnchor)
 const algos = {
   d: 'deflate-raw',
   '+': 'url',
+  ',': 'camel',
 }
 
 async function encode(text) {
@@ -60,6 +61,10 @@ async function encode(text) {
 
   if (enc == '+') {
     return '+' + encodeTitle(text)
+  }
+
+  if (enc == ',') {
+    return ',' + encodeCamel(text)
   }
 
   let algo = algos[enc]
@@ -82,6 +87,7 @@ async function decode(text) {
   text = text.slice(1)
 
   if (algo == 'url') return decodeHeading(text)
+  if (algo == 'camel') return decodeCamel(text)
 
   const binary = Uint8Array.from(atob(text), c => c.charCodeAt(0))
 
