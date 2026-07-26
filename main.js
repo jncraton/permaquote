@@ -64,7 +64,7 @@ async function encode(text) {
   }
 
   if (enc == ',') {
-    return ',' + encodeCamel(text)
+    return ',' + encodeURIComponentCamel(text)
   }
 
   let algo = algos[enc]
@@ -87,7 +87,7 @@ async function decode(text) {
   text = text.slice(1)
 
   if (algo == 'url') return decodeHeading(text)
-  if (algo == 'camel') return decodeCamel(text)
+  if (algo == 'camel') return decodeURIComponentCamel(text)
 
   const binary = Uint8Array.from(atob(text), c => c.charCodeAt(0))
 

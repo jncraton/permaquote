@@ -14,7 +14,7 @@ urinfo.js:
 	wget https://github.com/jncraton/urinfo/releases/download/v0.1.0/urinfo.js
 
 camel.js:
-	wget https://github.com/jncraton/encodeURIComponentCamel/releases/download/v0.2.0/camel.js
+	wget https://github.com/jncraton/encodeURIComponentCamel/releases/download/v1.0.0/camel.js
 
 test: index.html
 	pytest --browser firefox --browser chromium
