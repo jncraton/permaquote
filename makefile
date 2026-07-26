@@ -6,12 +6,15 @@ lint:
 format:
 	npx prettier@3.6.2 --write .
 
-index.html: index.template.html urinfo.js
+index.html: index.template.html urinfo.js camel.js
 	python3 pack.py
 	npx prettier@3.6.2 --write index.html
 
 urinfo.js:
 	wget https://github.com/jncraton/urinfo/releases/download/v0.1.0/urinfo.js
+
+camel.js:
+	https://github.com/jncraton/encodeURIComponentCamel/releases/download/v0.2.0/camel.js
 
 test: index.html
 	pytest --browser firefox --browser chromium
