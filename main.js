@@ -1,3 +1,5 @@
+import { compress, decompress } from 'https://cdn.jsdelivr.net/npm/brotli-compress@2.2.1/+esm'
+
 class URIAnchor extends HTMLElement {
   static observedAttributes = ['uri']
 
@@ -52,6 +54,7 @@ customElements.define('uri-anchor', URIAnchor)
 
 const algos = {
   d: 'deflate-raw',
+  b: 'brotli',
   '+': 'url',
   ',': 'camel',
 }
@@ -65,6 +68,12 @@ async function encode(text) {
 
   if (enc == ',') {
     return ',' + encodeURIComponentCamel(text)
+  }
+
+  if (enc == 'b') {
+    const textEncoder = new TextEncoder()
+    const compressed = await compress(textEncoder.encode(text))
+    return compressed.toBase64()
   }
 
   let algo = algos[enc]
