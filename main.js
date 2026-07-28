@@ -73,7 +73,7 @@ async function encode(text) {
   if (enc == 'b') {
     const textEncoder = new TextEncoder()
     const compressed = await compress(textEncoder.encode(text))
-    return compressed.toBase64()
+    return 'b' + compressed.toBase64()
   }
 
   let algo = algos[enc]
@@ -97,6 +97,12 @@ async function decode(text) {
 
   if (algo == 'url') return decodeHeading(text)
   if (algo == 'camel') return decodeURIComponentCamel(text)
+
+  if (algo == 'brotli') {
+    const decompressed = await decompress(Uint8Array.fromBase64(text))
+    const decompressedString = new TextDecoder().decode(decompressed)
+    return decompressedString
+  }
 
   const binary = Uint8Array.from(atob(text), c => c.charCodeAt(0))
 
