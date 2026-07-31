@@ -1,12 +1,13 @@
 import re
 
-template = open('index.template.html').read()
-style = open('style.css').read()
-template = template.replace('<link rel="stylesheet" href="style.css" type="text/css" />', f"<style>{style}</style>")
-for jsfile in ['urinfo.js', 'camel.js', 'main.js']:
-    script = open(jsfile).read()
+for htmlfile in ['index']:
+    template = open(f'{htmlfile}.template.html').read()
+    style = open('style.css').read()
+    template = template.replace('<link rel="stylesheet" href="style.css" type="text/css" />', f"<style>{style}</style>")
+    for jsfile in ['urinfo.js', 'camel.js', 'main.js']:
+        script = open(jsfile).read()
 
-    template = template.replace(f' src="{jsfile}"></script>', f">{script}</script>")
+        template = template.replace(f' src="{jsfile}"></script>', f">{script}</script>")
 
-with open('index.html', 'w') as f:
-    f.write(template)
+    with open(f'{htmlfile}.html', 'w') as f:
+        f.write(template)
